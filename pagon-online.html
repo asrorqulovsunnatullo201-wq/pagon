@@ -544,7 +544,7 @@ const MS=t=>{const e=$('mm');if(e){e.textContent=t;e.style.display=''}};
 const MW=o=>{$('mw').className=o?'on':'';if(o)MR()};
 /*FB-START*/
 // ===== Firebase Realtime Database (REST + EventSource): ўз серверингиз керак эмас, фақат база манзили =====
-const FB0='';
+const FB0='https://pagon-21478-default-rtdb.europe-west1.firebasedatabase.app';
 try{const h=new URLSearchParams(location.hash.slice(1)).get('fb');if(h)localStorage.setItem('pagon_fb',h)}catch(e){}
 const FBG=()=>{try{return(localStorage.getItem('pagon_fb')||FB0).replace(/\/+$/,'')}catch(e){return FB0}};
 const FU=p=>FBG()+'/'+p+'.json';
