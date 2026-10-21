@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="uz-Cyrl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Пагон</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap&subset=cyrillic">
+<style>
+:root{--bg:#13273f;--bg2:#0d1c2f;--fg:#eef1f4;--cf:#fbfaf4;--ink:#15181d;--red:#b3262e;--gold:#d9ad3c;--pink:#aab7c6;--btn:#d5dce5;--btnfg:#13273f;--wn:#ffd166;--hd:Oswald,"Arial Narrow",system-ui,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:repeating-linear-gradient(45deg,#ffffff07 0 1px,#0000 1px 3px),radial-gradient(120% 70% at 50% 35%,#1d3d63,var(--bg) 55%,var(--bg2));color:var(--fg);font:15px/1.3 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;display:flex;flex-direction:column;gap:8px;padding:8px;max-width:520px;margin:0 auto}
+#hd{display:grid;grid-template-columns:1fr auto 1fr;gap:6px 8px;align-items:stretch}
+.ep{position:relative;display:flex;flex-direction:column;justify-content:center;padding:3px 24px 3px 12px;color:#1a1608;background:repeating-linear-gradient(90deg,#0000 0 6px,#0000001f 6px 7px),linear-gradient(#efcb68,#bb8f24);clip-path:polygon(0 0,calc(100% - 16px) 0,100% 50%,calc(100% - 16px) 100%,0 100%)}
+.ep::after{content:"";position:absolute;right:13px;top:50%;width:8px;height:8px;margin-top:-4px;border-radius:50%;background:#5b430c;box-shadow:inset 0 1px 1px #ffffff90}
+.ep small{font-size:11px;font-weight:700;opacity:.8}
+.ep b{font:700 30px/1 var(--hd)}
+.ep.th{padding:3px 12px 3px 24px;text-align:right;background:repeating-linear-gradient(90deg,#0000 0 6px,#0000001f 6px 7px),linear-gradient(#dfe6ee,#8f9db0);clip-path:polygon(16px 0,100% 0,100% 100%,16px 100%,0 50%)}
+.ep.th::after{right:auto;left:13px}
+.md{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:64px}
+.md i{font-style:normal;font-size:34px;line-height:1}
+.md i.r{color:#ff7b7b}
+.md small{font-size:11px;opacity:.75}
+.hl{grid-column:1/-1;display:flex;justify-content:space-between;font-size:12px;opacity:.7}
+#op{display:flex;gap:6px}
+.s{position:relative;flex:1;padding:6px 4px 4px;text-align:center;font-size:12px;border-radius:6px 6px 16px 16px;background:linear-gradient(#0000,#0005),var(--bg2);border-top:3px solid #d9ad3c66}
+#tb{flex:1;min-height:110px;border-radius:16px;padding:14px;display:flex;flex-wrap:wrap;gap:12px;align-content:flex-start;overflow-y:auto;background:repeating-linear-gradient(45deg,#ffffff08 0 1px,#0000 1px 4px),radial-gradient(90% 90% at 50% 40%,#2a5c88,#1b4268);box-shadow:inset 0 0 0 2px var(--gold),inset 0 0 0 5px var(--bg2),inset 0 0 0 6px #d9ad3c77,inset 0 10px 26px #0007}
+.pr{display:flex}
+.c{position:relative;flex:none;width:56px;height:80px;border-radius:8px;background:linear-gradient(155deg,#fff 0,#fff0 45%,#0000001a 100%),var(--cf);color:var(--ink);border:1px solid #00000040;box-shadow:inset 0 1px 0 #fff,0 2px 3px #0006,0 6px 12px -4px #000a;user-select:none;cursor:pointer}
+.c.r{color:var(--red)}
+.c svg{display:block;fill:currentColor}
+.ix{position:absolute;left:4px;top:3px;width:15px;display:flex;flex-direction:column;align-items:center;gap:2px;font-style:normal;line-height:1}
+.ix b{font:700 18px/1 var(--hd);letter-spacing:-.5px}
+.ix .sx{width:11px;height:11px}
+.ix.b{left:auto;top:auto;right:4px;bottom:3px;transform:rotate(180deg)}
+.mid{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.mid .sx{width:32px;height:32px}
+.c.a .mid .sx{width:40px;height:40px}
+.fc{position:absolute;left:17px;right:17px;top:10px;bottom:10px;border:1px solid currentColor;border-radius:4px;background:#1b1b1b14;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:4px 0}
+.c.r .fc{background:#b3262e1a}
+.fc .fg{width:15px;height:13px}
+.fc .fg.w{transform:rotate(180deg)}
+.fc .pp{width:9px;height:9px}
+.df{margin-left:-28px;margin-top:12px;transform:rotate(6deg);transform-origin:0 100%}
+.dim{opacity:.35}
+.pr.sel .c{outline:3px solid var(--gold)}
+.c u{position:absolute;top:-1px;right:7px;z-index:2;width:15px;height:20px;display:flex;align-items:flex-start;justify-content:center;padding-top:3px;font:700 11px/1 var(--hd);text-decoration:none;color:#1a1608;clip-path:polygon(0 0,100% 0,100% 100%,50% 80%,0 100%)}
+.k1{background:var(--gold)}.k2{background:var(--pink)}
+.s.tn{z-index:1;box-shadow:0 0 0 2px var(--gold),0 0 12px 2px #d9ad3cb0;animation:gi .3s ease-out,gp 2.4s ease-in-out .3s infinite}
+#hn.tn{background:#d9ad3c1a;box-shadow:0 0 0 2px var(--gold),0 0 12px 2px #d9ad3cb0;animation:gi .3s ease-out,gp 2.4s ease-in-out .3s infinite}
+@keyframes gi{from{box-shadow:0 0 0 2px #d9ad3c00,0 0 0 0 #d9ad3c00}}
+@keyframes gp{50%{box-shadow:0 0 0 2px var(--gold),0 0 18px 5px #d9ad3c66}}
+@media(prefers-reduced-motion:reduce){.s.tn,#hn.tn{animation:none}}
+.fan{position:relative;height:42px;margin-top:4px}
+.fan .bk{position:absolute;left:50%;bottom:2px;width:22px;height:32px;margin-left:-11px;border-radius:4px;border:2px solid #f4efe0;background:repeating-linear-gradient(45deg,#0000 0 3px,#d9ad3c55 3px 4px),repeating-linear-gradient(-45deg,#0000 0 3px,#d9ad3c55 3px 4px),#1c3f6b;box-shadow:0 1px 3px #0009;transform-origin:50% 170%;transform:rotate(var(--a))}
+.fan.no{display:flex;align-items:center;justify-content:center;font-size:11px;opacity:.6}
+.fl{position:fixed;z-index:4;pointer-events:none;transform-style:preserve-3d;-webkit-transform-style:preserve-3d;will-change:transform}
+.fl .ff,.fl .fb{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.fl .fb{transform:rotateY(180deg)}
+.bkc{display:block;width:100%;height:100%;border-radius:9px;border:4px solid #f4efe0;background:repeating-linear-gradient(45deg,#0000 0 6px,#d9ad3c55 6px 8px),repeating-linear-gradient(-45deg,#0000 0 6px,#d9ad3c55 6px 8px),#1c3f6b;box-shadow:0 2px 6px #0008}
+#ms{min-height:44px;font-size:13px;color:#b9c4d2}
+#ms br{display:none}
+#ms b{display:block;margin-top:2px;font-size:16px;color:#fff}
+.wn{color:var(--wn);font-weight:700}
+#bt{display:flex;gap:8px}
+button{flex:1;padding:12px;border:0;border-radius:8px;background:var(--btn);color:var(--btnfg);font:700 17px var(--hd);cursor:pointer}
+button.on{background:var(--gold);color:#1b1b1b}
+#bt button:nth-child(1){background:#a4222a;color:#fff}
+#bt button:nth-child(2){background:linear-gradient(#efcb68,#c39a2c);color:#1a1608;box-shadow:0 2px 0 #7a5d12}
+#bt button:nth-child(n+3){background:#ffffff16;color:var(--fg);font-weight:500}
+#bt button.on{background:var(--gold);color:#1a1608}
+#lw,#pw,#mw{position:fixed;inset:0;background:#000a;display:none;z-index:9;padding:calc(10px + env(safe-area-inset-top,0px)) 10px calc(10px + env(safe-area-inset-bottom,0px))}
+#lw.on,#pw.on,#mw.on{display:flex}
+#lb,#pb,#mb{margin:auto;width:100%;max-width:520px;height:100%;background:var(--bg);border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:8px;overflow:hidden}
+#lh{display:flex;justify-content:space-between;align-items:center}
+#lh button,#lt button{flex:none;padding:6px 12px;font-size:14px}
+#lt{display:flex;gap:6px}
+#lt button{flex:1;opacity:.6}
+#lt button.on{opacity:1;background:var(--gold);color:#1b1b1b}
+#ll{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:6px}
+.lr{flex:none;background:var(--bg2);border-radius:10px;padding:8px;font-size:13px;line-height:1.35}
+.wy{display:none;margin-top:6px;padding-top:6px;border-top:1px solid #fff3}
+.lr.x .wy{display:block}
+.mc{display:inline-block;background:var(--gold);color:#1b1b1b;border-radius:8px;padding:0 6px;margin-left:4px;font-size:11px;font-weight:700}
+#tr{font-size:11px;opacity:.6;text-align:center;cursor:pointer}
+#pn,#nn,#on{display:inline-block;padding:8px 12px;margin-right:8px;border-radius:10px;background:var(--bg2);font-size:13px}
+#pb,#mb{height:auto;max-height:100%;overflow-y:auto}
+#pb>*,#mb>*{flex:none}
+.ph{display:flex;justify-content:space-between;align-items:center}
+.ph button{flex:none;padding:6px 12px;font-size:14px}
+.pg{background:var(--bg2);border-radius:10px;padding:8px;font-size:14px}
+#pi,#ci,#fi{width:100%;margin-top:4px;padding:8px;border:0;border-radius:8px;font-size:16px;background:var(--btn);color:var(--btnfg)}
+.st{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.st div{background:var(--bg2);border-radius:10px;padding:6px;text-align:center;font-size:12px}
+.st b{display:block;font-size:20px}
+.sg{display:flex;gap:6px}
+.sg button{flex:1;padding:8px;font-size:13px;opacity:.7}
+.sg button.on{opacity:1;background:var(--gold);color:#1b1b1b}
+#lc{display:flex;gap:6px}
+#lc button{flex:1;padding:6px;font-size:13px;opacity:.7}
+#lc button.on{opacity:1;background:var(--gold);color:#1b1b1b}
+#hn{display:flex;flex-wrap:wrap;gap:8px 6px;justify-content:center;max-height:34vh;overflow-y:auto;padding:8px 4px 4px;border-radius:12px}
+#ft{font-size:11px;opacity:.6;text-align:center;cursor:pointer}
+#ov{position:fixed;inset:0;background:#000a;display:none;align-items:center;justify-content:center;padding:20px;z-index:5}
+#ov.on{display:flex}
+#ov div{background:var(--cf);color:var(--ink);border-radius:16px;padding:20px;text-align:center;max-width:340px}
+#ov h2,#ov h3{margin:0 0 8px}
+#ov button{margin-top:12px;width:100%;background:#1b2d24;color:#f6f3e4}
+.rs{display:flex;justify-content:space-between;align-items:center;background:var(--bg2);border-radius:8px;padding:6px 10px}.rs button{flex:none;padding:4px 10px;font-size:14px}#rc{font:700 36px var(--hd);letter-spacing:8px;text-align:center;color:var(--gold)}.cl #bt button:nth-child(n+3){display:none}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="s0" viewBox="0 0 24 24"><path d="M12 1.5C12 1.5 3 8.6 3 14c0 3 2.4 5 5 5 1.3 0 2.5-.5 3.2-1.4-.2 2-.9 3.5-2.7 4.4h7c-1.8-.9-2.5-2.4-2.7-4.4.7.9 1.9 1.4 3.2 1.4 2.6 0 5-2 5-5C21 8.6 12 1.5 12 1.5z"/></symbol>
+<symbol id="s1" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4.7"/><circle cx="6.6" cy="14" r="4.7"/><circle cx="17.4" cy="14" r="4.7"/><path d="M12 11c0 5-.5 8.5-3.5 11.5h7C12.5 19.5 12 16 12 11z"/></symbol>
+<symbol id="s2" viewBox="0 0 24 24"><path d="M12 21.4l-1.5-1.3C5.4 15.4 2 12.3 2 8.5 2 5.4 4.4 3 7.5 3c1.7 0 3.4.8 4.5 2.1C13.1 3.8 14.8 3 16.5 3 19.6 3 22 5.4 22 8.5c0 3.8-3.4 6.9-8.5 11.6L12 21.4z"/></symbol>
+<symbol id="s3" viewBox="0 0 24 24"><path d="M12 1.5C14 6.2 17.5 9.5 21.5 12 17.5 14.5 14 17.8 12 22.5 10 17.8 6.5 14.5 2.5 12 6.5 9.5 10 6.2 12 1.5z"/></symbol>
+<symbol id="fk" viewBox="0 0 24 20"><path d="M2 17L1 5l6 5 5-8 5 8 6-5-1 12z"/><rect x="2" y="17.5" width="20" height="2.3" rx="1"/><circle cx="1.2" cy="4.5" r="1.5"/><circle cx="12" cy="2" r="1.6"/><circle cx="22.8" cy="4.5" r="1.5"/></symbol>
+<symbol id="fq" viewBox="0 0 24 20"><path d="M2 17V8l2.5 4L7 5l2.5 5.5L12 3l2.5 7.5L17 5l2.5 7L22 8v9z"/><rect x="2" y="17.5" width="20" height="2.3" rx="1"/><circle cx="2" cy="6.8" r="1.4"/><circle cx="7" cy="3.8" r="1.4"/><circle cx="12" cy="1.8" r="1.5"/><circle cx="17" cy="3.8" r="1.4"/><circle cx="22" cy="6.8" r="1.4"/></symbol>
+<symbol id="fj" viewBox="0 0 24 20"><path d="M3 16C3 9 7 6 12 6c4 0 7 2 8 6l1 4z"/><rect x="2" y="16.5" width="21" height="2.8" rx="1.4"/><path d="M15 6.5C17 2 20 1 23.5.5 22.5 4 19.5 7 15 8z"/></symbol>
+</defs></svg>
+<div id="hd"></div>
+<div id="op"></div>
+<div id="tb"></div>
+<div id="ms"></div>
+<div id="bt"></div>
+<div id="hn"></div>
+<div id="ft" onclick="LW(1)"><b id="pn" onclick="event.stopPropagation();PW(1)">👤 Профиль</b><b id="nn" onclick="event.stopPropagation();NN()">🔄 Янги ўйин</b><b id="on" onclick="event.stopPropagation();MW(1)">🌐 Онлайн</b>📋 Қоидалар журнали — ҳар бир ҳаракат ва модда</div>
+<div id="pw"><div id="pb"><div class="ph"><b>👤 Профиль ва созламалар</b><button onclick="PW(0)">✕</button></div><label class="pg">Исм<input id="pi" maxlength="14" oninput="PN(this.value)"></label><div class="st" id="ps"></div><div class="sg"><button id="pa" onclick="AU()">🤖 Авто</button><button id="pz" onclick="PA()">⏸ Пауза</button></div><div class="sg"><button class="sp" onclick="SS(0)">Секин</button><button class="sp" onclick="SS(1)">Оддий</button><button class="sp" onclick="SS(2)">Тез</button></div><button id="px" onclick="PX()">Статистикани тозалаш</button></div></div>
+<div id="lw"><div id="lb"><div id="lh"><b>📋 Қоидалар журнали</b><button onclick="LW(0)">✕</button></div><div id="lt"><button id="t1" onclick="LT(0)">Ҳаракатлар</button><button id="t2" onclick="LT(1)">Қоидалар</button></div><div id="lc"><button id="lp" onclick="PA()"></button><button class="sp" onclick="SS(0)">Секин</button><button class="sp" onclick="SS(1)">Оддий</button><button class="sp" onclick="SS(2)">Тез</button></div><div id="ll"></div><div id="tr" onclick="T()">Автотест (ID бўйича) ▶</div></div></div>
+<div id="mw"><div id="mb"></div></div><div id="ov"></div>
+<script>
+const $=i=>document.getElementById(i),SU=['♠','♣','♥','♦'],RL=r=>r<11?r:'JQKA'[r-11],cs=c=>RL(c.r)+SU[c.s];
+const N=['Сиз','Чап рақиб','Шерик','Ўнг рақиб'],sy=(p,w)=>`\u0001${p}\u0002${w}\u0003`,rs=t=>t.replace(/\u0001(\d)\u0002([^\u0003]*)\u0003/g,(m,p,w)=>+p?(NM[p]||N[p])+' '+w+'ди':'Сиз '+w+'дингиз');
+let seed=+new URLSearchParams(location.search).get('seed')||Date.now(),HU=0,CH=0,VI=0,TST=0,S,M={pg:[6,6]},TM,AP=0,LG=[],LO=0,LP=0,XP={},LN=0,PZ=0,SP=1,SPD=[2,1,.1],TS0=Date.now();
+const rnd=()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296},pk=a=>a[rnd()*a.length|0];
+const dl=()=>(1500+rnd()*1000)*SPD[SP]; // botlar kutish vaqti: 1,5–2,5 soniya
+// K: 0 oddiy, 1 oʻz pagon (P), 2 raqib pagon (R)
+const K=(c,x)=>S.pg[0]==S.pg[1]?0:c.r==S.pg[x%2]?1:c.r==S.pg[1-x%2]?2:0;
+const ok=(c,x,df)=>{const k=K(c,x),t=c.s==S.t;return!(k==1&&!t||df&&k==2&&!t)};
+const beats=(a,c,d)=>!(K(a,d)==1&&a.s!=S.t)&&ok(c,d,1)&&(c.s==a.s?c.r>a.r:c.s==S.t);
+const addok=(c,x)=>S.tab.length<S.lim&&ok(c,x,0)&&S.tab.some(p=>p.a.r==c.r||p.d&&p.d.r==c.r);
+const val=(c,x)=>c.r+(c.s==S.t?20:0)+(K(c,x)==1?30:0);
+const low=(a,x)=>a.reduce((m,c)=>!m||val(c,x)<val(m,x)?c:m,null);
+const rm=(p,c)=>S.hands[p].splice(S.hands[p].indexOf(c),1);
+const nx=s=>{for(let i=0;i<4;i++)if(S.hands[(s+i)%4].length)return(s+i)%4;return s};
+const allc=()=>S.tab.flatMap(p=>p.d?[p.a,p.d]:[p.a]);
+// hujumni sherikka berish: faqat oʻyinning birinchi hujumida (S.cnt==0) yoki hujum qila olmaganda (faqat kozirsiz pagon)
+const canPass=x=>S.bito[x]<3&&S.hands[(x+2)%4].length>0&&(S.cnt==0||!S.hands[x].some(c=>ok(c,x,0)));
+
+function newGame(prev){
+ const d=[];for(let s=0;s<4;s++)for(let r=6;r<15;r++)d.push({s,r});
+ for(let i=35;i>0;i--){const j=rnd()*(i+1)|0;[d[i],d[j]]=[d[j],d[i]]}
+ S={pg:[...M.pg],deck:d,hands:[[],[],[],[]],ground:[],dis:[],tab:[],bito:[0,0,0,0],cnt:0,t:d[0].s,a:0,d:1,x:0,lim:6,ev:'',wn:'',sel:-1,over:0};
+ for(let k=0;k<6;k++)for(let p=0;p<4;p++)S.hands[p].push(d.pop());
+ al()&&AQ.push({t:'deal'});
+ const f=first(prev),e=S.pg[0]==S.pg[1];lg('Янги ўйин',[1,2,3,4],'36 карта, ҳар кимга 6 тадан. Козир: '+SU[S.t]+'. Пагонлар: Биз '+S.pg[0]+', Улар '+S.pg[1]+(e?' — Дурак (пагон таъсир қилмайди)':'')+'. Биринчи ҳужумчи: '+N[f]+(S.hands[f].some(c=>c.s==S.t)?' (энг кичик козир эгаси).':' (козир йўқ — ғолиб жамоанинг биринчи ўйинчиси).'));round(f)}
+// boshlovchi: eng past kozir egasi (prev: oldingi gʻolib jamoa, -1: hamma)
+function first(prev){
+ let b=-1,v=99;
+ for(const p of prev<0?[0,1,2,3]:[prev,prev+2])for(const c of S.hands[p])if(c.s==S.t&&c.r<v){v=c.r;b=p}
+ return b<0?(prev<0?0:prev):b}
+
+function chk(){
+ if(S.over)return 1;
+ const dn=t=>!S.hands[t].length&&!S.hands[t+2].length;let r=-2;
+ if(!S.deck.length){const a=dn(0),b=dn(1);r=a&&b?-1:a?0:b?1:-2}
+ if(r==-2&&S.cnt>=60)r=-1;
+ if(r>-2){fin(r);return 1}return 0}
+
+function fin(r){
+ S.over=1;S.res=r;S.champ=-1;S.gp=0;if(r<0){PS(r);lg('Дуранг',[18,19],(S.deck.length?'Раундлар сони 60 дан ошди':'Икки жамоа бир вақтда тугатди')+'. Пагонлар ўзгармайди, ўйин қайта ўйналади.');return}
+ const o=S.pg[r],eq=S.pg[0]==S.pg[1];S.old=o;
+ S.gp=eq?0:S.ground.filter(c=>c.r==o).length;
+ M.pg[r]=o+(eq?1:[0,1,1,1,2][Math.min(4,S.gp)]);
+ if(M.pg[r]>14)S.champ=r;PS(r);lg((r?'Рақиблар':'Сиз')+' ютди',S.champ>=0?[18,20,21]:[18,20],'Ғолиб жамоа тугатди. '+(eq?'Дурак ўйини: пагон +1.':'Ерда '+S.gp+' та '+o+'-пагон картаси → пагон +'+(M.pg[r]-o)+'.')+' Пагон: '+o+' → '+Math.min(14,M.pg[r])+(S.champ>=0?'. Пагон 14 дан ошди — матч чемпиони.':''))}
+
+function round(a){
+ if(chk())return;
+ a=nx(a);const d=[(a+1)%4,(a+3)%4].find(p=>S.hands[p].length);
+ if(d==null)return fin(-1);
+ S.a=S.x=a;S.d=d;S.tab=[];S.sel=-1;S.lim=Math.min(6,S.hands[d].length);
+ const r=drop(a);if(chk())return;if(r)round((a+2)%4)}
+
+// koloda tugagan, hujum navbati sizda, qoʻlda faqat pagon: avtomatik yerga
+function drop(a){
+ const h=S.hands[a],p=(a+2)%4,g=S.pg[a%2];
+ if(S.pg[0]==S.pg[1]||S.deck.length||!h.length||!h.every(c=>c.r==g))return 0;
+ const q=S.hands[p];
+ if(!q.length||q.every(c=>c.r==g)){S.ground.push(...h,...q);S.hands[a]=[];S.hands[p]=[];S.ev=q.length?'Жамоа тугатди!':'Пагонлар ерга тушди';lg(S.ev,[17],'Колода тугаган; '+N[a]+' қўлида фақат ўз пагонлари; шерик '+(q.length?'қўлида ҳам фақат пагон':'қўлида карта йўқ')+' → '+(h.length+q.length)+' та карта ерга тушди.');return 0}
+ q.push(...h);S.hands[a]=[];S.ev='Пагонлар шерикка ўтди';lg(S.ev,[17],'Колода тугаган; '+N[a]+' қўлида фақат ўз пагонлари, шерикда бошқа карталар бор → '+h.length+' та пагон '+N[p]+' қўлига ўтди.');return 1}
+
+function play(x,c,w){if(!ok(c,x,0))VI++;AN('p',x,c);rm(x,c);S.tab.push({a:c,d:null});S.ev=sy(x,w)+': '+cs(c);const L=S.tab.length==1;lg(S.ev,L?[5,6]:[6,7],cs(c)+' — '+kt(c,x)+'. '+(L?'Ҳужумчи: '+N[x]+', ҳимоячи: '+N[S.d]+'.':'Рақам столдагига мос; ҳужум карталари '+S.tab.length+'/'+S.lim+'.'))}
+function defend(d,c,i){if(!beats(S.tab[i].a,c,d))VI++;AN('d',d,c);S.tab[i].d=c;rm(d,c);S.sel=-1;S.ev=sy(d,'бос')+': '+cs(S.tab[i].a)+' → '+cs(c);const a=S.tab[i].a,r=[8];if(K(c,d))r.push(9);if(K(a,d)==1)r.push(10);lg(S.ev,r,N[d]+': '+cs(a)+' ('+kt(a,d)+') → '+cs(c)+' ('+kt(c,d)+'). '+(a.s==c.s?'Бир хил масть, катта карта.':'Козир билан босилди.'))}
+function pass(x){if(!canPass(x))return 0;S.bito[x]++;S.x=(x+2)%4;S.ev=sy(x,'Бито бос')+' — ҳужум шерикка ўтди';lg(S.ev,[15],N[x]+': '+S.bito[x]+'/3 марта. Сабаб: '+(S.cnt==0?'ўйиннинг биринчи ҳужуми.':'ҳужумга ярайдиган карта йўқ (фақат козирсиз ўз пагони).'));return 1}
+function xf(x){const p=(x+2)%4,n=S.hands[x].length;S.hands[p].push(...S.hands[x]);S.hands[x]=[];S.cnt++;S.ev='Пагонлар шерикка ўтди';lg(S.ev,[16],N[x]+' ҳужум қила олмайди ва ҳужумни беролмайди: қўлидаги '+n+' та карта '+N[p]+' қўлига ўтди.');round(p)}
+
+// t=1: himoyachi hammasini oladi; t=0: Bito (faqat hamma karta bosilgan boʻlsa)
+function endRound(t){
+ AS(t);const a=S.a,d=S.d,c=allc();
+ if(!t&&S.tab.some(p=>!p.d))VI++;
+ if(t){S.hands[d].push(...c);S.ev=sy(d,'ол')}else{S.dis.push(...c);S.ev='Бито — стол ёпилди'}
+ S.tab=[];S.cnt++;
+ for(const p of[a,(a+2)%4,(a+3)%4,d])while(S.deck.length&&S.hands[p].length<6)S.hands[p].push(S.deck.pop());
+ const f=nx(t?(d+1)%4:d);lg(S.ev,t?[12,13,14]:[11,13,14],'Стол: '+c.length+' та карта. '+(t?N[d]+' ҳаммасини олди.':'Ҳамма ҳужум карталари босилган — карталар ўйиндан чиқди.')+' Колодадан тўлдирилди (қолди: '+S.deck.length+'). Кейинги ҳужумчи: '+N[f]+'.');round(t?(d+1)%4:d)}
+
+// bot qarorlari
+function bl(x,can){const r=can.filter(c=>K(c,x)==2&&c.s!=S.t),n=can.filter(c=>c.s!=S.t);return CH?pk(can):low(r.length?r:n.length?n:can,x)}
+function ba(p,cs){const n=cs.filter(c=>c.s!=S.t),r=n.filter(c=>K(c,p)==2);return low(r.length?r:n.length?n:S.hands[p].length<3?cs:[],p)}
+// himoyachi bot: HAMMA bosilmagan kartani bosish rejasi; iloji boʻlmasa null (olaman). Qaytaradi [stol indeksi, karta]
+function plan(d){
+ const u=[],key=i=>S.tab[i].a.r+(S.tab[i].a.s==S.t?20:0),used=[];let first=null;
+ S.tab.forEach((p,i)=>{if(!p.d)u.push(i)});
+ u.sort((i,j)=>key(j)-key(i));
+ for(const i of u){
+  const c=low(S.hands[d].filter(c=>!used.includes(c)&&beats(S.tab[i].a,c,d)),d);
+  if(!c)return null;used.push(c);if(!first)first=[i,c]}
+ return first}
+
+// bitta bot qadami: 0 = hech narsa qilmadi (oʻyinchi harakati kutilmoqda)
+function tick(){
+ if(S.over)return 0;
+ const hu=x=>HU>=0&&HS[x]&&!AP;
+ if(!S.tab.length){ // hujum boshi
+  const x=S.x,can=S.hands[x].filter(c=>ok(c,x,0));
+  if(!can.length){if(canPass(x)){if(hu(x))return 0;pass(x)}else xf(x);return 1}
+  if(hu(x))return 0;
+  play(x,bl(x,can),'ҳужум қил');return 1}
+ const d=S.d,at=[S.a,(S.a+2)%4].filter(p=>S.hands[p].length),un=S.tab.filter(p=>!p.d);
+ if(S.tab.length<S.lim&&S.hands[d].length){ // hujumchi botlar yana karta qoʻshadi
+  for(const p of at){
+   if(hu(p))continue;
+   const cs=S.hands[p].filter(c=>addok(c,p));if(!cs.length)continue;
+   const c=CH?(rnd()<.5?pk(cs):0):rnd()<(un.length?.35:.6)?ba(p,cs):0;
+   if(c){play(p,c,'қўш');return 1}}}
+ if(un.length){
+  if(hu(d))return 0; // himoyachi — siz: Olaman yoki bosishni oʻzingiz hal qilasiz
+  const pl=plan(d);
+  if(!pl||CH&&rnd()<.2){endRound(1);return 1}
+  defend(d,pl[1],pl[0]);return 1}
+ if(at.some(hu))return 0; // hujumchi — siz: Bito yoki qoʻshishni oʻzingiz hal qilasiz
+ endRound(0);return 1}
+
+// interfeys
+const fan=n=>{if(!n)return'<div class="fan no">Карта йўқ</div>';const st=n>1?Math.min(8,64/(n-1)):0;return`<div class="fan" title="${n}">${Array.from({length:n},(_,i)=>`<i class="bk" style="--a:${((i-(n-1)/2)*st).toFixed(1)}deg"></i>`).join('')}</div>`};
+// navbati kelgan oʻyinchi: stol boʻsh — hujum boshlovchi; bosilmagan karta bor — himoyachi; hammasi bosilgan — hujumchi
+const tn=()=>{if(S.over)return-1;if(!S.tab.length)return S.x;if(S.tab.some(p=>!p.d)&&S.hands[S.d].length)return S.d;return S.hands[S.a].length?S.a:(S.a+2)%4};
+const ic=(id,cl)=>`<svg class="${cl}"><use href="#${id}"/></svg>`;
+const cd=(c,x,i)=>{const k=K(c,0),f=c.r>10&&c.r<14,fg='f'+'jqk'[c.r-11],ix=`<i class="ix"><b>${RL(c.r)}</b>${ic('s'+c.s,'sx')}</i>`;return`<div class="c${c.s>1?' r':''}${f?' f':c.r==14?' a':''}${x||''}" data-k="${c.s}_${c.r}"${i>=0?` onclick="H(${i})"`:''}>${ix}${ix.replace('"ix"','"ix b"')}${f?`<div class="fc">${ic(fg,'fg')}${ic('s'+c.s,'pp')}${ic(fg,'fg w')}</div>`:`<div class="mid">${ic('s'+c.s,'sx')}</div>`}${k?`<u class="k${k}">${k<2?'П':'Р'}</u>`:''}</div>`};
+// oʻyinchining hozirgi roli: lead (hujum boshi), att (qoʻshuvchi), def (himoyachi)
+const md=()=>AP||PZ||S.over||!S.tab.length&&S.x!=HU?'':!S.tab.length?'lead':S.d==HU?'def':[S.a,(S.a+2)%4].includes(HU)&&S.hands[HU].length?'att':'';
+// ===== animatsiyalar (Web Animations API). Testlarda, yashirin sahifada va "harakatni kamaytirish" rejimida oʻchiq =====
+let AQ=[],FL=new Set(),CUING=0,DLG=0,DC=[0,0,0,0],DLE=0;
+const al=()=>!TST&&!CUING&&!document.hidden&&typeof Element!='undefined'&&!!Element.prototype.animate&&!matchMedia('(prefers-reduced-motion:reduce)').matches;
+const af=()=>SP==2?.4:SP==0?1.4:1,rc=e=>e.getBoundingClientRect(),cc=r=>[r.left+r.width/2,r.top+r.height/2];
+// manba: qoʻldagi karta (siz) yoki raqib yelpigʻichi markazi. DOM hali oldingi holatda boʻlganda oʻlchanadi
+const asrc=(x,c)=>{if(x==0){const e=$('hn').children[S.hands[0].indexOf(c)];if(e)return{p:cc(rc(e)),f:1}}else{const b=$('op').children[x-1],f=b&&(b.querySelector('.fan')||b);if(f)return{p:cc(rc(f)),f:0}}return null};
+const AN=(t,x,c)=>{if(al())AQ.push({t,c,s:asrc(x,c)})};
+// stoldagi barcha karta oluvchiga (t=1) yoki bitoga (t=0) suriladi
+const AS=t=>{if(!al())return;const cs=[...$('tb').querySelectorAll('.c')].map(e=>{const n=e.cloneNode(true);n.classList.remove('df');n.style.visibility='';return{h:n.outerHTML,r:rc(e),k:e.dataset.k}});if(cs.length)AQ.push({t:'s',tk:t?S.d:-1,cs})};
+function fly(h,b,kf,o){
+ const n=document.createElement('div'),[bx,by]=cc(b);n.className='fl';
+ n.innerHTML=`<div class="ff">${h}</div><div class="fb"><i class="bkc"></i></div>`;
+ n.style.cssText=`left:${b.left}px;top:${b.top}px;width:${b.width}px;height:${b.height}px`;
+ document.body.appendChild(n);
+ const tf=p=>`translate(${p[0]-bx}px,${p[1]-by}px) rotate(${p[5]||0}deg) scale(${p[2]}) perspective(800px) rotateY(${p[3]}deg)`;
+ let dn=0;const end=()=>{if(dn)return;dn=1;n.remove();o.end&&o.end()},d=o.d*af(),l=(o.l||0)*af();
+ const a=n.animate(kf.map(([t,p])=>({offset:t,transform:tf(p),...(o.fade?{opacity:p[4]}:{})})),{duration:d,delay:l,easing:'cubic-bezier(.22,.8,.3,1)',fill:'both'});
+ a.onfinish=a.oncancel=end;setTimeout(end,d+l+800);return d+l}
+// uchayotgan karta manzilda yashirin turadi, qonib tushgach koʻrinadi
+function hid(){
+ for(const id of['hn','tb'])$(id).querySelectorAll('.c').forEach(e=>e.style.visibility=FL.has(e.dataset.k)?'hidden':'');
+ [1,2,3].forEach(p=>$('op').children[p-1].querySelectorAll('.bk').forEach((e,i)=>e.style.visibility=DLG&&i>=DC[p]?'hidden':''))}
+function AE(e){
+ if(e.t=='deal')return deal();
+ if(e.t=='s')return sweep(e);
+ const c=e.c,k=c.s+'_'+c.r,el=$('tb').querySelector(`[data-k="${k}"]`),s=e.s;if(!el||!s)return;
+ const b=rc(el),q=cc(b),d=e.t=='d',p0=[...s.p,s.f?1:.42,s.f?0:180,1],p1=[...q,1,0,1];
+ FL.add(k);
+ // himoya: karta bosilayotgan karta ustiga tepadan "tushadi"
+ fly(cd(c),b,d?[[0,p0],[.66,[q[0],q[1]-8,1.16,0,1]],[1,p1]]:[[0,p0],[1,p1]],{d:d?480:400,end:()=>{FL.delete(k);hid()}})}
+function sweep(e){
+ e.cs.forEach((o,i)=>{
+  const b=o.r,q=cc(b),p0=[...q,1,0,1],fo={d:500,l:i*45};let p1;
+  if(e.tk==0){const el=$('hn').querySelector(`[data-k="${o.k}"]`);if(!el)return;p1=[...cc(rc(el)),1,0,1];FL.add(o.k);fo.end=()=>{FL.delete(o.k);hid()}}
+  else if(e.tk>0){const f=$('op').children[e.tk-1].querySelector('.fan');if(!f)return;p1=[...cc(rc(f)),.4,180,1]}
+  else{p1=[q[0]+110,q[1]-36,.8,0,0,16];fo.fade=1}
+  fly(o.h,b,[[0,p0],[1,p1]],fo)})}
+// oʻyin boshi: kartalar stol markazidan hammaga birma-bir tarqatiladi
+function deal(){
+ DLG=1;DC=[0,0,0,0];const o=cc(rc($('tb'))),ob={left:o[0]-28,top:o[1]-40,width:56,height:80},hs=[...$('hn').children];let last=0,n=0;
+ for(let k=0;k<6;k++)for(let p=0;p<4;p++){const l=n++*70;
+  if(p==0){const el=hs[k];if(!el)continue;const kk=el.dataset.k,b=rc(el),m=el.cloneNode(true);m.classList.remove('dim');m.removeAttribute('onclick');m.style.visibility='';FL.add(kk);
+   last=Math.max(last,fly(m.outerHTML,b,[[0,[...o,.6,180,1]],[1,[...cc(b),1,0,1]]],{d:420,l,end:()=>{FL.delete(kk);hid()}}))}
+  else{const f=$('op').children[p-1].querySelectorAll('.bk')[k];if(!f)continue;
+   last=Math.max(last,fly('',ob,[[0,[...o,.6,180,1]],[1,[...cc(rc(f)),.4,180,1]]],{d:420,l,end:()=>{DC[p]++;hid()}}))}}
+ DLE=Date.now()+last+60;setTimeout(()=>{DLG=0;hid()},last+80)}
+function runAQ(){const q=AQ;AQ=[];if(al())for(const e of q)try{AE(e)}catch(x){}hid()}
+
+function R(){if(TST)return;SV();PL();
+ const g=S.pg,h=S.hands[HU],m=md(),un=S.tab.filter(p=>!p.d),ky=c=>(c.s==S.t?9:c.s)*20+c.r;
+ h.sort((a,b)=>ky(a)-ky(b));
+ const can=c=>AP||PZ?1:m=='lead'?ok(c,0,0):m=='att'?addok(c,0):m=='def'?un.some(p=>beats(p.a,c,0)):K(c,0)!=1||c.s==S.t;
+ let pr=PZ?'⏸ Пауза — ўйин тўхтаган':AP?'🤖 Автопилот сиз учун ўйнамоқда':'Кутинг…';
+ if(m=='lead')pr=h.some(c=>ok(c,0,0))?'Ҳужум қилинг: карта танланг'+(canPass(0)?' ёки Бито босинг':''):'Ҳужум қила олмайсиз — Бито босинг';
+ else if(m=='att')pr=un.length?'Ҳимоячи босмоқда. Яна қўшишингиз мумкин':h.some(c=>addok(c,0))?'Қўшинг ёки Бито босинг':'Қўшадиган карта йўқ — Бито босинг';
+ else if(m=='def')pr=!un.length?'Ҳаммаси босилди. Кутинг…':h.some(c=>un.some(p=>beats(p.a,c,0)))?'Босилмаган: '+un.length+' та. Карта билан босинг ёки Оламан босинг':'Босиб бўлмайди — Оламан босинг';
+ $('hd').innerHTML=`<div class="ep"><small>Биз</small><b>${RL(g[0])}</b></div><div class="md"><i class="${S.t>1?'r':''}">${SU[S.t]}</i><small>Колода ${S.deck.length}</small></div><div class="ep th"><small>Улар</small><b>${RL(g[1])}</b></div><div class="hl"><span>${PF.nm.replace(/[<>&]/g,'')}</span><span>${g[0]==g[1]?'Дурак: пагон таъсир қилмайди':'Пагон ўйини'}</span><span>Бозиш ${S.cnt}/60</span></div>`;const T=tn();$('op').innerHTML=[1,2,3].map(p=>`<div class="s${T==p?' tn':''}"><small>${NM[p]||N[p]}${S.over?'':p==S.a?' · ҳужум':p==S.d?' · ҳимоя':''}</small>${fan(S.hands[p].length)}</div>`).join('');
+ $('tb').innerHTML=S.tab.map((p,i)=>`<div class="pr${S.sel===i?' sel':''}"${S.d==HU&&!p.d?` onclick="Sl(${i})"`:''}>${cd(p.a)}${p.d?cd(p.d,' df'):''}</div>`).join('')||'<i style="opacity:.6">Стол бўш</i>';
+ $('ms').innerHTML=`${rs(S.ev||'')}<br>${S.wn?`<span class="wn">${S.wn}</span>`:`<b>${S.over?'':pr}</b>`}`;
+ $('bt').innerHTML=`<button onclick="Bt('o')">Оламан</button><button onclick="Bt('b')">Бито${S.tab.length?'':` (${3-S.bito[0]})`}</button><button class="${AP?'on':''}" onclick="AU()">🤖 Авто${AP?' ✓':''}</button><button class="${PZ?'on':''}" onclick="PA()" style="flex:none;padding:12px 14px">${PZ?'\u25b6':'\u23f8'}</button>`;
+ $('hn').innerHTML=h.map((c,i)=>cd(c,can(c)?'':' dim',i)).join('');$('hn').className=T==0?'tn':'';runAQ();PUSH();
+ const o=$('ov');o.className=S.over?'on':'';
+ if(S.over){const w=S.res,c=S.champ;
+  o.innerHTML=`<div><h2>${w<0?'Дуранг!':w==0?'Сиз ютдингиз!':'Рақиблар ютди'}</h2><p>${w<0?'Пагонлар ўзгармади, ўйин қайта ўйналади.':`Ерда ${S.gp} та пагон. Пагон: ${S.old} → ${Math.min(14,M.pg[w])}`}</p>${c>=0?`<h3>Матч тугади: ${c==0?'сиз чемпионсиз!':'рақиблар чемпион!'}</h3>`:''}<button onclick="nextG()">${c>=0?'Янги матч':'Кейинги ўйин'}</button></div>`}}
+
+function go(t){if(TST||CL)return;clearTimeout(TM);TM=setTimeout(st,Math.max(t,DLE-Date.now()))}
+function st(){if(PZ||CL)return;if(tick()){S.wn='';WN=E4();R();go(dl())}else{R();if(AP&&S.over)TM=setTimeout(()=>{AP&&S.over&&!PZ&&nextG()},2500*SPD[SP])}}
+
+// himoyachi: bosilmagan hujum kartasini tanlash (ixtiyoriy)
+function Sl(i){if(CL)return CI('S',{i});S.wn='';if(AP||PZ)return;if(S.d==HU&&S.tab[i]&&!S.tab[i].d)S.sel=S.sel===i?-1:i;R()}
+
+// qoʻldagi kartaga bosish: rolga qarab hujum / qoʻshish / himoya
+function H(i){if(CL)return CI('H',{k:ck(S.hands[0][i])});
+ const m=md(),c=S.hands[HU][i];S.wn='';if(PZ){S.wn='⏸ Пауза — давом эттиринг';return R()}
+ if(AP){S.wn='Автопилот ёқилган — олдин ўчиринг';return R()}
+ if(!m||!c){S.wn='Ҳозир навбат сизда эмас';return R()}
+ if(m=='lead'){if(!ok(c,0,0)){S.wn='Бу картани ўйнаб бўлмайди';return R()}play(0,c,'ҳужум қил')}
+ else if(m=='att'){if(!addok(c,0)){S.wn=S.tab.length>=S.lim?'Лимит: яна қўшиб бўлмайди':'Стол рақамига мос карта керак';return R()}play(0,c,'қўш')}
+ else{const g=S.sel>=0&&S.tab[S.sel]&&!S.tab[S.sel].d?S.sel:S.tab.findIndex(p=>!p.d&&beats(p.a,c,0));
+  if(g<0||!beats(S.tab[g].a,c,0)){S.wn=S.tab.some(p=>!p.d)?'Бу карта билан босиб бўлмайди':'Ҳаммаси босилган';return R()}
+  defend(0,c,g)}
+ R();go(dl())}
+
+// tugmalar doim yoniq; notoʻgʻri paytda qisqa izoh chiqadi, oʻyin sizning oʻrningizga hech narsa bosmaydi
+function Bt(k){if(CL)return CI('B',{b:k});
+ const m=md(),t=S.tab.length;S.wn='';if(PZ){S.wn='⏸ Пауза — давом эттиринг';return R()}if(AP){S.wn='Автопилот ёқилган — олдин ўчиринг';return R()}
+ if(k=='o'){
+  if(!t)S.wn='Стол бўш';
+  else if(S.d!=HU)S.wn='Сиз ҳимоячи эмассиз';
+  else{endRound(1);R();return go(dl())}}
+ else if(!t){
+  if(m!='lead')S.wn='Ҳозир ҳужум навбати сизда эмас';
+  else if(canPass(0)){pass(0);R();return go(dl())}
+  else S.wn=S.bito[0]>=3?'Бито имконияти тугади':'Ҳужумни фақат ўйиннинг биринчи ҳужумида шерикка бериш мумкин'}
+ else if(m!='att')S.wn='Сиз ҳужум қилмаяпсиз';
+ else if(S.tab.some(p=>!p.d))S.wn='Ҳали босилмаган карта бор';
+ else{endRound(0);R();return go(dl())}
+ R()}
+
+const RU=[
+'Ўйин 36 картадан (6…A, 4 масть). 4 ўйинчи, 2 жамоа: Сиз+Шерик ва икки рақиб.',
+'Ҳар ўйинчига 6 тадан карта. Колоданинг пастки картаси масти — козир.',
+'Ҳар жамоанинг пагони бор (матч боши: иккаласида 6). Пагонлар тенг бўлса — «Дурак»: пагон таъсир қилмайди.',
+'Биринчи ҳужумчи — энг кичик козир эгаси (кейинги ўйинда ғолиб жамоа ичидан). Козир бўлмаса — ғолиб жамоанинг биринчи ўйинчиси.',
+'Раунд: ҳужумчи — навбатдаги ўйинчи, ҳимоячи — ундан кейинги рақиб (қўлида карта бўлган).',
+'Ўз жамоа пагони козир бўлмаса — ҳужум, қўшиш ва ҳимояда ўйналмайди. Рақиб пагони ҳужум/қўшишда ўйналади.',
+'Қўшиш: ҳужумчи ва шериги столдаги рақамга тенг карта қўшади. Ҳужум карталари сони — ҳимоячи қўлидаги карта сони ва 6 дан ошмайди.',
+'Босиш: ўша масть катта картаси ёки козир. Козирни фақат катта козир босади.',
+'Ҳимояда козирсиз пагон (ўзиники ҳам, рақибники ҳам) билан босиб бўлмайди.',
+'Ҳимоячининг ўз пагони (козирсиз) ҳужум қилинса — уни босиб бўлмайди, олиш керак.',
+'Бито: ҳамма ҳужум карталари босилгач, қўшилмаса — стол ёпилади, карталар ўйиндан чиқади.',
+'Оламан: ҳимоячи столдаги ҳамма картани олади.',
+'Тўлдириш: раунддан кейин 6 тагача колодадан — ҳужумчи, шериги, бошқа рақиб, охирида ҳимоячи.',
+'Кейинги ҳужум: бито бўлса — ҳимоячи; олган бўлса — ундан кейинги ўйинчи.',
+'Ҳужумни шерикка бериш («Бито»): ҳар ўйинчига 3 марта; фақат ўйиннинг биринчи ҳужумида ёки ҳужумга ярайдиган карта бўлмаса.',
+'Ҳужум қила олмаса ва бера олмаса — қўлидаги карталар шерикка ўтади.',
+'Колода тугаган, ҳужумчида фақат ўз пагонлари: шерикда бошқа карта бўлса — пагонлар шерикка ўтади; бўлмаса — ерга тушади.',
+'Колода тугагач қўли бўшаган жамоа ғолиб. Иккаласи бир вақтда бўшаса — дуранг.',
+'Дуранг (ёки 60 раунд): пагонлар ўзгармайди, ўйин қайта ўйналади.',
+'Ғолиб пагони: ерда унинг пагон рақамли карталари 0→+0, 1–3→+1, 4→+2. Дуракда +1.',
+'Пагон 14 (A) дан ошса — жамоа матч чемпиони; янги матчда иккала пагон 6.'];
+const kt=(c,x)=>{const k=K(c,x),t=c.s==S.t?', козир':'';return k==1?'ўз пагони'+t:k==2?'рақиб пагони'+t:t?'козир':'оддий карта'};
+const mc=r=>r.map(i=>'<span class="mc">М'+i+'</span>').join('');
+function lg(t,r,w){if(TST)return;const e={n:++LN,t,r,w};LG.push(e);LG.length>1000&&LG.shift();LO&&!LP&&LR(e)}
+function LW(o){LO=o;$('lw').className=o?'on':'';if(o)LR()}
+function LT(p){LP=p;LR()}
+function Lx(el,n){XP[n]=!XP[n];el.classList.toggle('x')}
+function LR(a){
+ const l=$('ll'),y=l.scrollTop,row=e=>'<div class="lr'+(XP[e.n]?' x':'')+'" onclick="Lx(this,'+e.n+')"><b>'+e.n+'.</b> '+rs(e.t)+mc(e.r)+'<div class="wy">'+e.r.map(i=>'<div><b>М'+i+'.</b> '+RU[i-1]+'</div>').join('')+'<div style="margin-top:4px"><b>Бу ҳолатда:</b> '+e.w+'</div></div></div>';
+ if(a){if(LG.length==1)l.innerHTML='';l.insertAdjacentHTML('beforeend',row(a));if(l.childElementCount>1000)l.removeChild(l.firstChild);return}
+ $('t1').className=LP?'':'on';$('t2').className=LP?'on':'';
+ l.innerHTML=LP?RU.map((t,i)=>'<div class="lr"><b>М'+(i+1)+'.</b> '+t+'</div>').join(''):LG.length?LG.map(row).join(''):'<i style="opacity:.6">Ҳали ҳаракат йўқ</i>';
+ l.scrollTop=LP?0:l.scrollHeight}
+const SV=()=>{if(TST||CL)return;TS0=Date.now();try{localStorage.setItem('pagon_v5',JSON.stringify({S,M,HU,CH,seed,AP,LG,PZ,SP,t:TS0}))}catch(e){}};
+function CU(){if(TST||CL||!S||PZ||S.over&&!AP)return;CUING=1;try{const n=Math.min(1500,Math.floor((Date.now()-TS0)/(2000*SPD[SP])));let k=0;while(k<n){if(!tick()){if(AP&&S.over)NG();else break}k++}}finally{CUING=0}S.wn=''}
+function RS(){try{if(new URLSearchParams(location.search).get('seed'))return 0;const d=JSON.parse(localStorage.getItem('pagon_v5'));if(!d||!d.S)return 0;({S,M,HU,CH,seed,AP,LG}=d);PZ=d.PZ||0;SP=d.SP??1;TS0=d.t||Date.now();XP={};LN=LG.length?LG[LG.length-1].n:0;CU();return 1}catch(e){return 0}}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)SV();else{CU();R();go(600)}});
+addEventListener('pagehide',SV);
+const PL=()=>{$('lp').className=PZ?'on':'';$('lp').textContent=PZ?'▶ Давом эттириш':'⏸ Пауза';$('pa').className=AP?'on':'';$('pz').className=PZ?'on':'';document.querySelectorAll('.sp').forEach((x,i)=>x.className='sp'+(i%3==SP?' on':''))};
+function PA(){PZ=!PZ;S.wn='';R();if(!PZ)go(300)}
+function SS(i){SP=i;R();go(300)}
+let NC=0,NT;const NL='🔄 Янги ўйин';
+function NN(){if(CL||MP)return;const b=$('nn');clearTimeout(NT);if(!NC){NC=1;b.textContent='❓ Тасдиқланг';NT=setTimeout(()=>{NC=0;b.textContent=NL},3000);return}NC=0;b.textContent=NL;M={pg:[6,6]};newGame(-1);R();go(600)}
+let PF={nm:'Сиз',g:0,w:0,l:0,d:0,mw:0};
+try{Object.assign(PF,JSON.parse(localStorage.getItem('pagon_pf')))}catch(e){}
+const PSV=()=>{try{localStorage.setItem('pagon_pf',JSON.stringify(PF))}catch(e){}};
+function PR(){$('pi').value=PF.nm;$('ps').innerHTML=[['Ўйин',PF.g],['Ғалаба',PF.w],['Мағлубият',PF.l],['Дуранг',PF.d],['Ғалаба %',PF.g?Math.round(PF.w*100/PF.g):'—'],['Чемпион',PF.mw]].map(a=>'<div><b>'+a[1]+'</b>'+a[0]+'</div>').join('')}
+function PS(r){if(TST)return;PF.g++;r<0?PF.d++:r?PF.l++:PF.w++;if(S.champ==0)PF.mw++;PSV();$('pw').className=='on'&&PR()}
+function PW(o){$('pw').className=o?'on':'';if(o){PR();PL()}}
+function PN(v){PF.nm=v.replace(/[<>&"']/g,'').slice(0,14)||'Сиз';PSV();R()}
+const PXL='Статистикани тозалаш';
+function PX(){const b=$('px');if(!b.dataset.c){b.dataset.c=1;b.textContent='❓ Тасдиқланг';setTimeout(()=>{b.dataset.c='';b.textContent=PXL},3000);return}b.dataset.c='';b.textContent=PXL;PF={nm:PF.nm,g:0,w:0,l:0,d:0,mw:0};PSV();PR()}
+function AU(){AP=!AP;S.wn='';S.sel=-1;R();if(AP)go(300)}
+function NG(){if(S.champ>=0)M.pg=[6,6];newGame(S.champ>=0||S.res<0?-1:S.res)}
+function nextG(){if(CL)return CI('N',{});NG();R();go(600)}
+
+// ===== Sinov: test hujjatidagi har bir holat ID bilan (J,T,Q,R,B,N,Y,P,A,G,E,O,M,D,X) =====
+const C=s=>({s:SU.indexOf(s[0]),r:{J:11,Q:12,K:13,A:14}[s.slice(1)]||+s.slice(1)}),O=(s,x,d)=>ok(C(s),x,d),B=(a,c,d)=>beats(C(a),C(c),d);
+const D4=[['♠9'],['♣9'],['♦9'],['♣10']],D5=[['♦7'],['♣7'],['♦8'],['♦10']],rk=(r,n)=>SU.slice(0,n).map(s=>s+r);
+const lt=()=>{let b=-1,v=99;S.hands.forEach((h,p)=>h.forEach(c=>{if(c.s==S.t&&c.r<v){v=c.r;b=p}}));return b};
+const uniq=()=>{const a=[...S.deck,...S.hands.flat(),...S.ground,...S.dis,...allc()];return a.length==36&&new Set(a.map(c=>c.s*20+c.r)).size==36};
+let XR;
+// sinov holati: pagon A=6 B=8, kozir ♥; A — 0 va 2-oʻrin, B — 1 va 3-oʻrin
+function mk(o={}){
+ S={pg:o.pg||[6,8],deck:Array(o.dk||0).fill({s:0,r:6}),hands:[0,1,2,3].map(i=>(o.h||D4)[i].map(C)),ground:(o.g||[]).map(C),dis:[],tab:(o.tab||[]).map(([a,d])=>({a:C(a),d:d?C(d):null})),bito:o.b||[0,0,0,0],cnt:o.cnt||0,t:2,a:o.a||0,d:o.d??1,x:o.x??(o.a||0),lim:o.lim||6,ev:'',wn:'',sel:-1,over:0};
+ M={pg:[...S.pg]};HU=-1;CH=0}
+const U=o=>{mk(o);HU=0},F=(o,r)=>{mk(o);fin(r);return M.pg+''};
+// tasodifiy qonuniy yurishlar bilan toʻliq matchlar (4 ta bot)
+function sim(n){
+ const r={g:0,stall:0,inv:0,champ:0,err:0};HU=-1;CH=1;VI=0;
+ for(let m=0;m<n;m++){M={pg:[6,6]};let pv=-1,ch=0;
+  for(let i=0;i<300&&!ch;i++)try{newGame(pv);let k=0;if(!uniq())r.inv++;while(tick()&&k++<9999)if(!uniq())r.inv++;
+   r.g++;if(!S.over)r.stall++;ch=S.champ>=0;pv=S.res??-1}catch(e){r.err++;ch=1}
+  if(!ch)r.champ++}
+ r.vi=VI;return r}
+const TS=[
+['J-1',()=>{M={pg:[6,6]};HU=-1;newGame(-1);return S.hands.every(h=>h.length==6)&&S.deck.length==12}],
+['J-2',()=>{mk({pg:[14,6]});S.res=S.champ=0;nextG();return M.pg+''=='6,6'&&S.pg+''=='6,6'}],
+['J-3',()=>RL(9)==9&&RL(11)=='J'&&RL(12)=='Q'&&RL(13)=='K'&&RL(14)=='A'],
+['T-1',()=>{mk({pg:[6,6]});return!K(C('♦6'),0)&&!K(C('♠6'),1)}],
+['T-2',()=>{mk({pg:[7,6]});return K(C('♦7'),0)==1&&K(C('♦6'),0)==2}],
+['T-3',()=>{mk({pg:[7,7]});return!K(C('♦7'),0)}],
+['T-4',()=>{mk({pg:[6,6]});for(let r=6;r<15;r++)for(let s=0;s<4;s++)for(let x=0;x<4;x++)if(K({s,r},x)||!ok({s,r},x,0)||!ok({s,r},x,1))return 0;return 1}],
+['T-5',()=>{mk({pg:[8,6]});return K(C('♦8'),0)==1&&K(C('♦6'),0)==2&&K(C('♦8'),1)==2&&K(C('♦6'),1)==1}],
+['Q-1',()=>!O('♦6',0,0)],
+['Q-2',()=>!B('♦5','♦6',0)],
+['Q-3',()=>{mk({tab:[['♠6']]});return!addok(C('♣6'),0)}],
+['Q-4',()=>O('♥6',0,0)],
+['Q-5',()=>B('♥5','♥6',0)],
+['Q-6',()=>{mk({tab:[['♠6']]});return addok(C('♥6'),0)}],
+['Q-7',()=>{mk({pg:[6,6]});return O('♦6',0,0)&&O('♦6',0,1)}],
+['Q-8','=X-4'],
+['R-1',()=>O('♠8',0,0)],
+['R-2',()=>!B('♠8','♥9',1)&&!B('♠8','♥8',1)],
+['R-3',()=>{mk({tab:[['♠8']],h:[['♦9'],[],['♠9'],['♣9']]});endRound(1);const c=S.hands[1].find(c=>c.s==0&&c.r==8);return!!c&&!ok(c,1,0)&&!ok(c,1,1)}],
+['R-4',()=>{mk({tab:[['♠8','♥9']]});const a=addok(C('♦8'),0);mk({tab:[['♠8','♥9'],['♦8']],h:[[],['♥10'],[],[]]});return a&&!B('♦8','♥10',1)&&plan(1)===null}],
+['R-5',()=>{mk({tab:[['♠7']]});return!addok(C('♦8'),0)}],
+['R-6',()=>!B('♠7','♠8',0)],
+['R-7',()=>B('♠7','♥8',0)],
+['R-8',()=>!O('♦6',0,0)&&!O('♦6',0,1)],
+['R-9',()=>B('♠7','♥6',0)],
+['R-10','=R-2'],
+['B-1',()=>{mk({h:[['♥9'],['♥8'],['♦9'],['♥7']]});if(first(-1)!=3)return 0;for(let i=0;i<30;i++){M={pg:[6,6]};newGame(-1);const b=lt();if(b>=0&&b!=S.a)return 0}return 1}],
+['B-2',()=>{mk({h:[['♥7'],['♥6'],[],[]]});return first(-1)==1}],
+['B-3',()=>{mk({h:[['♥9'],['♥6'],['♥8'],[]]});return first(0)==2}],
+['N-1',()=>{U({});Bt('b');return S.x==2&&S.bito[0]==1}],
+['N-2',()=>{pass(0);pass(2);return S.x==0}],
+['N-3',()=>[0,1,2,3].every(x=>{mk({x});pass(x);return S.x==(x+2)%4})],
+['N-4',()=>pass(0)&&pass(2)&&pass(0)&&pass(2)&&pass(0)&&S.bito[0]==3],
+['N-5',()=>{U({b:[3,0,0,0]});Bt('b');return!pass(0)&&S.x==0&&S.bito[0]==3}],
+['N-6',()=>{mk({b:[3,2,1,3]});S.res=S.champ=-1;nextG();return S.bito.every(v=>!v)}],
+['N-7',()=>{mk({h:[[],['♥9'],['♠9'],['♥7']]});return first(-1)==3&&canPass(3)}],
+['N-8',()=>{mk({h:[['♥9'],['♥6'],['♥8'],[]]});return first(0)==2&&canPass(2)}],
+['N-9',()=>{U({tab:[['♠9','♥10']],cnt:2});Bt('b');return!S.tab.length&&!S.bito[0]&&S.dis.length==2}],
+['N-10',()=>{mk({b:[3,0,0,0],dk:3,cnt:4,h:[['♦6','♣6'],['♣9'],['♦9'],['♠9']]});tick();return S.hands[2].length==3&&!S.hands[0].length}],
+['N-11',()=>{U({cnt:2});Bt('b');return S.x==0&&!S.bito[0]}],
+['Y-1',()=>[0,1,2,3].every(a=>{mk({dk:5});round(a);return S.d%2!=a%2})],
+['Y-2',()=>{U({a:1,d:2,tab:[['♠9']]});H(0);return S.tab.length==1}],
+['Y-3',()=>{U({a:3,d:0,tab:[['♠9']]});Bt('b');return S.tab.length==1&&!!S.wn}],
+['Y-4',()=>{U({tab:[['♠9','♥10']]});Bt('o');return S.tab.length==1&&!!S.wn}],
+['Y-5',()=>{U({a:3,d:0,tab:[['♠9','♥10'],['♣9']]});Bt('o');return S.hands[0].length==4&&!S.tab.length}],
+['Y-6','=N-9'],
+['Y-7',()=>{U({tab:[['♠9','♥10'],['♣9']]});Bt('b');return S.tab.length==2&&!!S.wn}],
+['Y-8',()=>{mk({cnt:2,tab:[['♠9'],['♣9']],h:[['♦7'],['♠10','♣10'],['♦8'],['♣7']]});const v=VI;let k=0;while(S.tab.length&&k++<9)tick();return S.cnt==3&&S.dis.length==4&&VI==v}],
+['Y-9',()=>{mk({cnt:2,tab:[['♠9'],['♣9']],h:[['♦7'],['♠10','♦7'],['♦8'],['♣7']]});tick();return S.hands[1].length==4&&!S.tab.length}],
+['Y-10',()=>{U({tab:[['♠9','♥10']],h:D5});return tick()==0&&S.tab.length==1}],
+['Y-11',()=>{U({a:3,d:0,tab:[['♠9']],h:D5});return tick()==0&&S.tab.length==1}],
+['Y-12',()=>{mk({lim:2,tab:[['♠9','♥10'],['♣9']]});const a=!addok(C('♦9'),0);mk({dk:5,h:[['♠9','♠10','♦9','♦10'],['♠7','♣7','♦7'],['♣9'],['♣10']]});round(0);return a&&S.lim==3}],
+['P-1',()=>{U({dk:5,cnt:3,h:[['♦6','♣6'],['♣9'],['♠9'],['♦9']]});const s=!S.hands[0].some(c=>ok(c,0,0));Bt('b');return s&&S.x==2}],
+['P-2',()=>{U({dk:5,cnt:3,h:[['♦6','♣6','♥6'],['♣9'],['♠9'],['♦9']]});H(2);return S.tab.length==1&&S.tab[0].a.s==2}],
+['P-3',()=>{U({dk:5,cnt:3,h:[['♦6','♣6'],['♣9'],['♠9'],['♦9']]});Bt('b');return S.hands[0].length==2&&S.hands[2].length==1&&!drop(0)&&!S.ground.length}],
+['A-1',()=>{mk({h:[['♦6','♣6'],['♣9'],['♠6'],['♦9']]});const r=drop(0);chk();return!r&&S.ground.length==3&&!S.hands[0].length&&!S.hands[2].length&&S.res==0}],
+['A-2',()=>{mk({h:[['♦6','♣6'],['♣9'],['♠9'],['♦9']]});return drop(0)==1&&S.hands[2].length==3&&!S.hands[0].length&&!S.ground.length}],
+['A-3',()=>{mk({h:[['♦6','♣6'],['♣9'],[],['♦9']]});const r=drop(0);chk();return!r&&S.ground.length==2&&S.gp==2}],
+['A-4',()=>{mk({h:[['♦6','♣9'],['♣7'],['♠9'],['♦9']]});return!drop(0)&&!S.ground.length&&S.hands[0].length==2&&O('♣9',0,0)}],
+['A-5',()=>{mk({a:1,h:[['♦6','♣6'],['♣9'],['♠9'],['♦9']]});round(1);return S.hands[0].length==2&&!S.ground.length}],
+['A-6',()=>{U({tab:[['♠9','♥10']],h:[['♦6'],['♣9'],['♠9'],['♦9']]});H(0);return S.hands[0].length==1&&!S.ground.length&&S.hands[2].length==1}],
+['A-7',()=>{mk({a:3,d:0,tab:[['♠9','♥10']],h:[['♦6'],['♣9'],['♠6'],['♦9']]});endRound(0);return S.ground.length==2&&S.res==0}],
+['A-8',()=>{mk({a:2,h:[['♦6'],['♣9'],['♣6'],['♦9']]});round(2);return S.ground.length==2&&!S.hands[0].length}],
+['A-9',()=>{mk({h:[['♥6','♦6'],['♣9'],[],['♦9']]});return!drop(0)&&S.ground.length==2&&!S.hands[0].length}],
+['A-10','=Q-5'],
+['G-1',()=>{mk({h:[[],['♣9'],[],['♦9']]});chk();return S.res==0}],
+['G-2',()=>{mk({h:[[],['♣9'],['♠9'],['♦9']]});return!chk()&&!S.over}],
+['G-3',()=>{mk({h:[['♠9'],[],[],[]]});chk();return S.res==1}],
+['G-4',()=>{mk({h:[['♦6','♣6'],['♣9'],['♠6'],['♦9']]});drop(0);chk();return S.res==0}],
+['G-5',()=>{mk({h:[[],[],[],[]]});chk();return S.res==-1}],
+['E-1',()=>{mk({pg:[8,6],g:rk(8,3)});fin(0);return S.gp==3}],
+['E-2',()=>{mk({pg:[8,6],g:['♦8','♣9','♠8','♠6']});fin(0);return S.gp==2}],
+['E-3',()=>{mk({g:['♦6'],h:[['♣6','♠6'],['♣9'],[],['♦9']]});drop(0);chk();return S.gp==3}],
+['E-4',()=>{mk({pg:[6,6],g:['♦6','♣6']});fin(0);return S.gp==0}],
+['E-5',()=>{mk({g:['♣6','♠6'],h:[[],['♦6'],[],['♦9']]});fin(0);return S.gp==2}],
+['O-1',()=>F({pg:[6,6]},0)=='7,6'],
+['O-2',()=>F({pg:[8,6]},0)=='8,6'],
+['O-3',()=>F({pg:[8,6],g:rk(8,1)},0)=='9,6'],
+['O-4',()=>F({pg:[8,6],g:rk(8,3)},0)=='9,6'],
+['O-5',()=>F({pg:[8,6],g:rk(8,4)},0)=='10,6'],
+['O-6',()=>F({pg:[8,6],g:rk(6,2)},1)=='8,7'],
+['O-7',()=>F({pg:[8,9],g:rk(9,2)},1)=='8,10'],
+['O-8',()=>{const a=F({pg:[7,6],g:rk(6,1)},1);nextG();return a=='7,7'&&S.pg[0]==S.pg[1]}],
+['O-9',()=>{const a=F({pg:[7,6],g:rk(7,1)},0);nextG();return a=='8,6'&&S.pg[0]!=S.pg[1]}],
+['M-1',()=>{F({pg:[13,6],g:rk(13,4)},0);return S.champ==0}],
+['M-2',()=>F({pg:[13,6],g:rk(13,1)},0)=='14,6'&&S.champ==-1],
+['M-3',()=>{F({pg:[14,6],g:rk(14,2)},0);return S.champ==0}],
+['M-4',()=>F({pg:[14,6]},0)=='14,6'&&S.champ==-1],
+['M-5',()=>{F({pg:[14,14]},0);return S.champ==0}],
+['M-6',()=>F({pg:[12,6],g:rk(12,4)},0)=='14,6'&&S.champ==-1],
+['D-1',()=>{mk({pg:[7,6]});fin(-1);const a=M.pg+'';nextG();return a=='7,6'&&S.pg+''=='7,6'&&!S.over}],
+['D-2',()=>{mk({cnt:60,dk:3});chk();return S.res==-1}],
+['D-3',()=>{mk({cnt:59,dk:3});return!chk()&&!S.over}],
+['D-4',()=>{mk({cnt:5,tab:[['♠9','♥10']]});endRound(0);const a=S.cnt;mk({cnt:5,tab:[['♠9']]});endRound(1);return a==6&&S.cnt==6}],
+['D-5',()=>{mk({pg:[7,6]});fin(-1);nextG();return S.pg[0]!=S.pg[1]}],
+['D-6',()=>{mk({pg:[7,6]});fin(-1);nextG();const b=lt();return b<0||b==S.a}],
+['X-1',()=>XR.err==0&&XR.g>0],
+['X-2',()=>XR.stall==0],
+['X-3',()=>XR.inv==0],
+['X-4',()=>XR.vi==0],
+['X-5',()=>{const f=()=>{seed=777;M={pg:[6,6]};HU=-1;CH=1;newGame(-1);let k=0;while(tick()&&k++<9999);return JSON.stringify([S.res,S.cnt,S.ground,S.dis,S.hands])};return f()==f()}],
+['X-6',()=>XR.champ==0]];
+function T(){
+ const sv=[S,M,HU,CH,seed,VI,AP],m=Object.fromEntries(TS),bad=[];TST=1;AP=0;seed=12345;XR=sim(50);
+ for(const[id,f]of TS)try{mk();if(!(typeof f=='string'?m[f.slice(1)]:f)())bad.push(id)}catch(e){bad.push(id+'!')}
+ ;[S,M,HU,CH,seed,VI,AP]=sv;TST=0;
+ $('tr').textContent=bad.length?`Синов: ${TS.length} та ҳолатдан ${bad.length} таси ўтмади: ${bad.join(' ')}`:`Синов: ${TS.length} та ҳолатнинг ҳаммаси ўтди ✓ (${XR.g} та тасодифий ўйин)`}
+
+// ===== Онлайн: хона коди, ҳар ким ўз жойида, бўш жойларда ботлар =====
+let MP=null,CL=0,HS=[1,0,0,0],NM=['','','',''],WN=['','','',''],PT=0;
+const E4=()=>['','','',''],ck=c=>c?c.s+'_'+c.r:'',cl=t=>String(t||'').replace(/[<>&]/g,'').slice(0,14);
+// ҳолатни ўйинчи нуқтаи назарига айлантириш: k-жой 0-жой бўлади
+const RT=(s,k)=>{s=JSON.parse(JSON.stringify(s));if(!k)return s;const r=a=>a.map((_,i)=>a[(i+k)%4]);s.hands=r(s.hands);s.bito=r(s.bito);for(const f of['a','d','x'])s[f]=(s[f]-k+4)%4;if(k%2){s.pg.reverse();if(s.res>=0)s.res=1-s.res;if(s.champ>=0)s.champ=1-s.champ}s.ev=(s.ev||'').replace(/\u0001(\d)/g,(m,p)=>'\u0001'+((p-k+4)%4));return s};
+const RM=(m,k)=>({pg:k%2?[m.pg[1],m.pg[0]]:[...m.pg]});
+const MS=t=>{const e=$('mm');if(e){e.textContent=t;e.style.display=''}};
+const MW=o=>{$('mw').className=o?'on':'';if(o)MR()};
+/*FB-START*/
+// ===== Firebase Realtime Database (REST + EventSource): ўз серверингиз керак эмас, фақат база манзили =====
+const FB0='';
+try{const h=new URLSearchParams(location.hash.slice(1)).get('fb');if(h)localStorage.setItem('pagon_fb',h)}catch(e){}
+const FBG=()=>{try{return(localStorage.getItem('pagon_fb')||FB0).replace(/\/+$/,'')}catch(e){return FB0}};
+const FU=p=>FBG()+'/'+p+'.json';
+const mg=(o,v)=>{for(const k in v){if(v[k]===null)delete o[k];else o[k]=v[k]}return o};
+function fstream(p,cb,er){let d=null;const es=new EventSource(FU(p));
+ const h=m=>e=>{try{const j=JSON.parse(e.data),k=j.path.split('/').filter(Boolean);
+  if(!k.length)d=m&&d&&typeof d=='object'&&j.data?mg(d,j.data):j.data;
+  else{if(!d||typeof d!='object')d={};let o=d;for(let i=0;i<k.length-1;i++){if(!o[k[i]]||typeof o[k[i]]!='object')o[k[i]]={};o=o[k[i]]}
+   const l=k[k.length-1];if(j.data===null)delete o[l];else if(m&&j.data&&typeof j.data=='object')o[l]=mg(o[l]&&typeof o[l]=='object'?o[l]:{},j.data);else o[l]=j.data}
+  cb(d)}catch(x){}};
+ es.addEventListener('put',h(0));es.addEventListener('patch',h(1));es.onerror=()=>{if(es.readyState==2&&er)er()};return()=>es.close()}
+const fr=(m,p,d)=>fetch(FU(p),{method:m,body:JSON.stringify(d)}).then(r=>{if(!r.ok)throw new Error(r.status)});
+const FDB={
+ doc:p=>({get:()=>fetch(FU(p)).then(r=>r.json()).then(d=>({exists:d!=null,data:()=>d||undefined})),set:d=>fr('PUT',p,d),update:d=>fr('PATCH',p,d),
+  onSnapshot:(f,e)=>fstream(p,d=>f({exists:d!=null,data:()=>d||undefined}),e)}),
+ collection:p=>({onSnapshot:(f,e)=>fstream(p,d=>f({docs:Object.keys(d||{}).map(id=>({id,data:()=>d[id]}))}),e)})};
+/*FB-END*/
+async function MI(){if(!/^https:\/\/./.test(FBG()))return'Аввал база манзилини киритинг';let id;try{id=localStorage.getItem('pagon_uid');if(!id)localStorage.setItem('pagon_uid',id=Math.random().toString(36).slice(2,10)+Date.now().toString(36))}catch(e){id=Math.random().toString(36).slice(2,10)}return{db:FDB,id}}
+function FUI(){return FBG()?'<button onclick="FC()">🔗 Ҳаволани нусхалаш (дўстлар учун)</button><button onclick="FX()">База манзилини ўзгартириш</button>':'<label class="pg">Firebase Realtime Database манзили<input id="fi" placeholder="https://…firebaseio.com"></label><button onclick="FS()">Сақлаш</button>'}
+function FS(){const v=($('fi').value||'').trim().replace(/\/+$/,'');if(!/^https:\/\/[^\s\/]+$/.test(v))return MS('Манзил https:// билан бошланиши керак');try{localStorage.setItem('pagon_fb',v)}catch(e){}MR()}
+function FX(){try{localStorage.removeItem('pagon_fb')}catch(e){}MR()}
+function FC(){const u=location.href.split('#')[0]+'#fb='+encodeURIComponent(FBG());(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>MS('Ҳавола нусхаланди — дўстларга юборинг'),()=>MS(u))}
+function MR(){const m=MP,r=m&&(m.host?m:m.r),sd=r&&r.seats||[],nm=r&&r.names||[];
+ $('mb').innerHTML='<div class="ph"><b>🌐 Онлайн ўйин</b><button onclick="MW(0)">✕</button></div>'+(m?
+  '<div class="pg">Хона коди<div id="rc">'+m.code+'</div></div>'+[0,1,2,3].map(i=>`<div class="rs"><span>${i?'Ўйинчи':'Эга'}: <b>${sd[i]?cl(nm[i])||'—':'🤖 Бот'}</b></span>${m.host&&i&&sd[i]&&HS[i]?`<button onclick="MB(${i})">🤖</button>`:''}</div>`).join('')+
+  (m.host?(m.go?'':'<button onclick="MG()">Бошлаш</button><div class="pg">Бўш жойларга ботлар ўтиради</div>'):'<div class="pg">'+(m.k<0?'Кутинг…':'Хона эгаси бошлашини кутинг…')+'</div>')+'<button onclick="ML()">Хонадан чиқиш</button>'
+  :'<button onclick="MC()">Хона очиш</button><label class="pg">Ёки хона кодини киритинг<input id="ci" maxlength="4" autocapitalize="characters"></label><button onclick="MJ()">Кириш</button>')+(m?'':FUI())+'<div id="mm" class="pg" style="display:none"></div>'}
+// хона очиш (хона эгаси = 0-жой, ўйинни шу қурилма юритади)
+async function MC(){const c=await MI();if(typeof c=='string')return MS(c);const A='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',code=Array.from({length:4},()=>A[Math.random()*A.length|0]).join(''),d=c.db.doc('rooms/'+code+'/m'),nm=cl(PF.nm);
+ try{if((await d.get()).exists)return MC();await d.set({host:c.id,seats:[c.id,'','',''],names:[nm,'','',''],go:0,st:'',v:0,wn:E4()})}catch(e){return MS('Хона очилмади: база манзили ёки қоидаларни текширинг')}
+ MP={id:c.id,code,d,host:1,k:0,v:0,go:0,seats:[c.id,'','',''],names:[nm,'','',''],ln:{}};
+ MP.u1=c.db.collection('rooms/'+code+'/pl').onSnapshot(HP,()=>MS('Уланиш узилди'));MR()}
+// хона эгаси: кирганларни жойларга қўяди ва уларнинг ҳаракатларини бажаради
+function HP(q){const m=MP;if(!m||!m.host)return;let ch=0;const ai=[];
+ q.docs.forEach(x=>{const p=x.data(),u=x.id;if(!p)return;let k=m.seats.indexOf(u);
+  if(k<0&&!m.go){k=m.seats.indexOf('');if(k<0)return;m.seats[k]=u;m.names[k]=cl(p.name)||'Ўйинчи';ch=1}
+  if(k>0&&p.n>(m.ln[u]||0)){m.ln[u]=p.n;if(m.go)ai.push([k,p])}});
+ if(ch)m.d.update({seats:m.seats,names:m.names}).catch(()=>{});
+ if(ai.length){ai.forEach(a=>AI(a[0],a[1]));R();go(dl())}MR()}
+function AI(q,p){if(p.a=='L'){HS[q]=0;return}if(!HS[q])return;if(p.a=='N'){if(S.over)nextG();return}
+ const h0=HU,t0=TST,a0=AP;S=RT(S,q);M=RM(M,q);HU=0;TST=1;AP=0;
+ try{if(p.a=='H'){const i=S.hands[0].findIndex(c=>ck(c)==p.k);if(i>=0)H(i)}else if(p.a=='B')Bt(p.b);else if(p.a=='S')Sl(p.i)}catch(e){}
+ WN[q]=S.wn||'';S.wn='';S=RT(S,(4-q)%4);M=RM(M,(4-q)%4);HU=h0;TST=t0;AP=a0}
+function MG(){const m=MP;if(!m||!m.host||m.go)return;m.go=1;HS=[0,1,2,3].map(i=>m.seats[i]?1:0);NM=m.names.slice();NM[0]='';M={pg:[6,6]};newGame(-1);MW(0);R();go(600)}
+function MB(i){HS[i]=0;MR();R();go(300)}
+// хона эгаси ҳолатни ҳаммага юборади
+function PUSH(){if(!MP||!MP.host||!MP.go||TST)return;clearTimeout(PT);PT=setTimeout(async()=>{const m=MP;if(!m)return;if(m.bz)return PUSH();const j=JSON.stringify({S:{...S,wn:''},M}),w=WN.join('|');if(j==m.last&&w==m.lw)return;m.bz=1;m.last=j;m.lw=w;try{await m.d.update({go:1,st:j,wn:WN.slice(),v:++m.v})}catch(e){}m.bz=0},150)}
+// кириш
+async function MJ(){const code=($('ci').value||'').trim().toUpperCase();if(code.length<4)return MS('4 белгили кодни киритинг');const c=await MI();if(typeof c=='string')return MS(c);
+ const d=c.db.doc('rooms/'+code+'/m');let s;try{s=await d.get()}catch(e){return MS('Базага уланиб бўлмади')}if(!s.exists)return MS('Хона топилмади');if(s.data().go!=0)return MS('Ўйин аллақачон бошланган');
+ const pd=c.db.doc('rooms/'+code+'/pl/'+c.id);try{await pd.set({name:cl(PF.nm),t:Date.now(),n:0,a:'',k:'',i:-1,b:''})}catch(e){return MS('Қўшилиб бўлмади')}
+ MP={id:c.id,code,d,pd,host:0,k:-1,n:0};CL=1;document.body.classList.add('cl');MP.u1=d.onSnapshot(CS,()=>MS('Уланиш узилди'));MR()}
+function CS(s){const m=MP,r=s.data();if(!m)return;if(!r||r.go==2)return ML(1);m.r=r;m.k=r.seats.indexOf(m.id);
+ if(r.go==1&&r.st&&m.k>=0){const k=m.k,o=JSON.parse(r.st);S=RT(o.S,k);M=RM(o.M,k);HU=0;NM=[0,1,2,3].map(i=>i?r.names[(i+k)%4]||'':'');S.wn=(r.wn&&r.wn[k])||'';if(!m.go){m.go=1;MW(0)}R()}else MR()}
+function CI(a,o){const m=MP;if(!m||!m.pd||m.k<0)return;m.n++;const d=Object.assign({n:m.n,a,k:'',i:-1,b:''},o);m.q=(m.q||Promise.resolve()).then(()=>m.pd.update(d)).catch(()=>{})}
+function ML(c){const m=MP;if(m){m.u1&&m.u1();if(!c){if(m.host)m.d.update({go:2}).catch(()=>{});else if(m.pd){m.n++;m.pd.update({n:m.n,a:'L'}).catch(()=>{})}}}
+ const was=CL;MP=null;CL=0;HS=[1,0,0,0];NM=E4();WN=E4();document.body.classList.remove('cl');if(was){M={pg:[6,6]};newGame(-1)}R();go(600);MR();if(c)MS('Хона ёпилди')}
+
+RS()||newGame(-1);R();go(600);
+</script>
+</body>
+</html>
