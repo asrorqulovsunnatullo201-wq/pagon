@@ -107,7 +107,7 @@ button.on{background:var(--gold);color:#1b1b1b}
 #ov div{background:var(--cf);color:var(--ink);border-radius:16px;padding:20px;text-align:center;max-width:340px}
 #ov h2,#ov h3{margin:0 0 8px}
 #ov button{margin-top:12px;width:100%;background:#1b2d24;color:#f6f3e4}
-.rs{display:flex;justify-content:space-between;align-items:center;background:var(--bg2);border-radius:8px;padding:6px 10px}.rs button{flex:none;padding:4px 10px;font-size:14px}#rc{font:700 36px var(--hd);letter-spacing:8px;text-align:center;color:var(--gold)}.cl #bt button:nth-child(n+3){display:none}
+.rs{display:flex;justify-content:space-between;align-items:center;background:var(--bg2);border-radius:8px;padding:6px 10px}.rs button{flex:none;padding:4px 10px;font-size:14px}#rc{font:700 36px var(--hd);letter-spacing:8px;text-align:center;color:var(--gold)}.cl #bt button:nth-child(n+3){display:none}#tz{display:none;position:fixed;left:8px;right:8px;bottom:70px;z-index:9;background:#7a1d24;color:#fff;padding:8px 10px;border-radius:8px;font-size:13px}
 </style>
 </head>
 <body>
@@ -129,7 +129,7 @@ button.on{background:var(--gold);color:#1b1b1b}
 <div id="ft" onclick="LW(1)"><b id="pn" onclick="event.stopPropagation();PW(1)">👤 Профиль</b><b id="nn" onclick="event.stopPropagation();NN()">🔄 Янги ўйин</b><b id="on" onclick="event.stopPropagation();MW(1)">🌐 Онлайн</b>📋 Қоидалар журнали — ҳар бир ҳаракат ва модда</div>
 <div id="pw"><div id="pb"><div class="ph"><b>👤 Профиль ва созламалар</b><button onclick="PW(0)">✕</button></div><label class="pg">Исм<input id="pi" maxlength="14" oninput="PN(this.value)"></label><div class="st" id="ps"></div><div class="sg"><button id="pa" onclick="AU()">🤖 Авто</button><button id="pz" onclick="PA()">⏸ Пауза</button></div><div class="sg"><button class="sp" onclick="SS(0)">Секин</button><button class="sp" onclick="SS(1)">Оддий</button><button class="sp" onclick="SS(2)">Тез</button></div><button id="px" onclick="PX()">Статистикани тозалаш</button></div></div>
 <div id="lw"><div id="lb"><div id="lh"><b>📋 Қоидалар журнали</b><button onclick="LW(0)">✕</button></div><div id="lt"><button id="t1" onclick="LT(0)">Ҳаракатлар</button><button id="t2" onclick="LT(1)">Қоидалар</button></div><div id="lc"><button id="lp" onclick="PA()"></button><button class="sp" onclick="SS(0)">Секин</button><button class="sp" onclick="SS(1)">Оддий</button><button class="sp" onclick="SS(2)">Тез</button></div><div id="ll"></div><div id="tr" onclick="T()">Автотест (ID бўйича) ▶</div></div></div>
-<div id="mw"><div id="mb"></div></div><div id="ov"></div>
+<div id="tz"></div><div id="mw"><div id="mb"></div></div><div id="ov"></div>
 <script>
 const $=i=>document.getElementById(i),SU=['♠','♣','♥','♦'],RL=r=>r<11?r:'JQKA'[r-11],cs=c=>RL(c.r)+SU[c.s];
 const N=['Сиз','Чап рақиб','Шерик','Ўнг рақиб'],sy=(p,w)=>`\u0001${p}\u0002${w}\u0003`,rs=t=>t.replace(/\u0001(\d)\u0002([^\u0003]*)\u0003/g,(m,p,w)=>+p?(NM[p]||N[p])+' '+w+'ди':'Сиз '+w+'дингиз');
@@ -529,9 +529,9 @@ const TS=[
 ['X-5',()=>{const f=()=>{seed=777;M={pg:[6,6]};HU=-1;CH=1;newGame(-1);let k=0;while(tick()&&k++<9999);return JSON.stringify([S.res,S.cnt,S.ground,S.dis,S.hands])};return f()==f()}],
 ['X-6',()=>XR.champ==0]];
 function T(){
- const sv=[S,M,HU,CH,seed,VI,AP],m=Object.fromEntries(TS),bad=[];TST=1;AP=0;seed=12345;XR=sim(50);
+ const sv=[S,M,HU,CH,seed,VI,AP],m=Object.fromEntries(TS),bad=[],cl0=CL,hs0=HS;TST=1;AP=0;CL=0;HS=[1,0,0,0];seed=12345;XR=sim(50);
  for(const[id,f]of TS)try{mk();if(!(typeof f=='string'?m[f.slice(1)]:f)())bad.push(id)}catch(e){bad.push(id+'!')}
- ;[S,M,HU,CH,seed,VI,AP]=sv;TST=0;
+ ;[S,M,HU,CH,seed,VI,AP]=sv;TST=0;CL=cl0;HS=hs0;
  $('tr').textContent=bad.length?`Синов: ${TS.length} та ҳолатдан ${bad.length} таси ўтмади: ${bad.join(' ')}`:`Синов: ${TS.length} та ҳолатнинг ҳаммаси ўтди ✓ (${XR.g} та тасодифий ўйин)`}
 
 // ===== Онлайн: хона коди, ҳар ким ўз жойида, бўш жойларда ботлар =====
@@ -541,6 +541,7 @@ const E4=()=>['','','',''],ck=c=>c?c.s+'_'+c.r:'',cl=t=>String(t||'').replace(/[
 const RT=(s,k)=>{s=JSON.parse(JSON.stringify(s));if(!k)return s;const r=a=>a.map((_,i)=>a[(i+k)%4]);s.hands=r(s.hands);s.bito=r(s.bito);for(const f of['a','d','x'])s[f]=(s[f]-k+4)%4;if(k%2){s.pg.reverse();if(s.res>=0)s.res=1-s.res;if(s.champ>=0)s.champ=1-s.champ}s.ev=(s.ev||'').replace(/\u0001(\d)/g,(m,p)=>'\u0001'+((p-k+4)%4));return s};
 const RM=(m,k)=>({pg:k%2?[m.pg[1],m.pg[0]]:[...m.pg]});
 const MS=t=>{const e=$('mm');if(e){e.textContent=t;e.style.display=''}};
+function TZ(t){const e=$('tz');e.textContent=t;e.style.display='block';clearTimeout(TZ.t);TZ.t=setTimeout(()=>e.style.display='none',6000)}
 const MW=o=>{$('mw').className=o?'on':'';if(o)MR()};
 /*FB-START*/
 // ===== Firebase Realtime Database (REST + EventSource): ўз серверингиз керак эмас, фақат база манзили =====
@@ -548,13 +549,14 @@ const FB0='https://pagon-21478-default-rtdb.europe-west1.firebasedatabase.app';
 try{const h=new URLSearchParams(location.hash.slice(1)).get('fb');if(h)localStorage.setItem('pagon_fb',h)}catch(e){}
 const FBG=()=>{try{return(localStorage.getItem('pagon_fb')||FB0).replace(/\/+$/,'')}catch(e){return FB0}};
 const FU=p=>FBG()+'/'+p+'.json';
-const mg=(o,v)=>{for(const k in v){if(v[k]===null)delete o[k];else o[k]=v[k]}return o};
+const mg=(o,v)=>{for(const k in v){const x=v[k];if(x===null)delete o[k];else if(x&&typeof x=='object'&&!Array.isArray(x)&&o[k]&&typeof o[k]=='object')mg(o[k],x);else o[k]=x}return o};
+const AR=x=>{const a=['','','',''];if(x&&typeof x=='object')for(const k in x)a[+k]=x[k]==null?'':x[k];return a};
 function fstream(p,cb,er){let d=null;const es=new EventSource(FU(p));
  const h=m=>e=>{try{const j=JSON.parse(e.data),k=j.path.split('/').filter(Boolean);
   if(!k.length)d=m&&d&&typeof d=='object'&&j.data?mg(d,j.data):j.data;
   else{if(!d||typeof d!='object')d={};let o=d;for(let i=0;i<k.length-1;i++){if(!o[k[i]]||typeof o[k[i]]!='object')o[k[i]]={};o=o[k[i]]}
    const l=k[k.length-1];if(j.data===null)delete o[l];else if(m&&j.data&&typeof j.data=='object')o[l]=mg(o[l]&&typeof o[l]=='object'?o[l]:{},j.data);else o[l]=j.data}
-  cb(d)}catch(x){}};
+  cb(d)}catch(x){TZ('Хато: '+x.message)}};
  es.addEventListener('put',h(0));es.addEventListener('patch',h(1));es.onerror=()=>{if(es.readyState==2&&er)er()};return()=>es.close()}
 const fr=(m,p,d)=>fetch(FU(p),{method:m,body:JSON.stringify(d)}).then(r=>{if(!r.ok)throw new Error(r.status)});
 const FDB={
@@ -567,7 +569,7 @@ function FUI(){return FBG()?'<button onclick="FC()">🔗 Ҳаволани нус
 function FS(){const v=($('fi').value||'').trim().replace(/\/+$/,'');if(!/^https:\/\/[^\s\/]+$/.test(v))return MS('Манзил https:// билан бошланиши керак');try{localStorage.setItem('pagon_fb',v)}catch(e){}MR()}
 function FX(){try{localStorage.removeItem('pagon_fb')}catch(e){}MR()}
 function FC(){const u=location.href.split('#')[0]+'#fb='+encodeURIComponent(FBG());(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>MS('Ҳавола нусхаланди — дўстларга юборинг'),()=>MS(u))}
-function MR(){const m=MP,r=m&&(m.host?m:m.r),sd=r&&r.seats||[],nm=r&&r.names||[];
+function MR(){const m=MP,r=m&&(m.host?m:m.r),sd=r&&AR(r.seats)||[],nm=r&&AR(r.names)||[];
  $('mb').innerHTML='<div class="ph"><b>🌐 Онлайн ўйин</b><button onclick="MW(0)">✕</button></div>'+(m?
   '<div class="pg">Хона коди<div id="rc">'+m.code+'</div></div>'+[0,1,2,3].map(i=>`<div class="rs"><span>${i?'Ўйинчи':'Эга'}: <b>${sd[i]?cl(nm[i])||'—':'🤖 Бот'}</b></span>${m.host&&i&&sd[i]&&HS[i]?`<button onclick="MB(${i})">🤖</button>`:''}</div>`).join('')+
   (m.host?(m.go?'':'<button onclick="MG()">Бошлаш</button><div class="pg">Бўш жойларга ботлар ўтиради</div>'):'<div class="pg">'+(m.k<0?'Кутинг…':'Хона эгаси бошлашини кутинг…')+'</div>')+'<button onclick="ML()">Хонадан чиқиш</button>'
@@ -586,7 +588,7 @@ function HP(q){const m=MP;if(!m||!m.host)return;let ch=0;const ai=[];
  if(ai.length){ai.forEach(a=>AI(a[0],a[1]));R();go(dl())}MR()}
 function AI(q,p){if(p.a=='L'){HS[q]=0;return}if(!HS[q])return;if(p.a=='N'){if(S.over)nextG();return}
  const h0=HU,t0=TST,a0=AP;S=RT(S,q);M=RM(M,q);HU=0;TST=1;AP=0;
- try{if(p.a=='H'){const i=S.hands[0].findIndex(c=>ck(c)==p.k);if(i>=0)H(i)}else if(p.a=='B')Bt(p.b);else if(p.a=='S')Sl(p.i)}catch(e){}
+ try{if(p.a=='H'){const i=S.hands[0].findIndex(c=>ck(c)==p.k);if(i>=0)H(i)}else if(p.a=='B')Bt(p.b);else if(p.a=='S')Sl(p.i)}catch(e){TZ('Хато: '+e.message)}
  WN[q]=S.wn||'';S.wn='';S=RT(S,(4-q)%4);M=RM(M,(4-q)%4);HU=h0;TST=t0;AP=a0}
 function MG(){const m=MP;if(!m||!m.host||m.go)return;m.go=1;HS=[0,1,2,3].map(i=>m.seats[i]?1:0);NM=m.names.slice();NM[0]='';M={pg:[6,6]};newGame(-1);MW(0);R();go(600)}
 function MB(i){HS[i]=0;MR();R();go(300)}
@@ -597,9 +599,9 @@ async function MJ(){const code=($('ci').value||'').trim().toUpperCase();if(code.
  const d=c.db.doc('rooms/'+code+'/m');let s;try{s=await d.get()}catch(e){return MS('Базага уланиб бўлмади')}if(!s.exists)return MS('Хона топилмади');if(s.data().go!=0)return MS('Ўйин аллақачон бошланган');
  const pd=c.db.doc('rooms/'+code+'/pl/'+c.id);try{await pd.set({name:cl(PF.nm),t:Date.now(),n:0,a:'',k:'',i:-1,b:''})}catch(e){return MS('Қўшилиб бўлмади')}
  MP={id:c.id,code,d,pd,host:0,k:-1,n:0};CL=1;document.body.classList.add('cl');MP.u1=d.onSnapshot(CS,()=>MS('Уланиш узилди'));MR()}
-function CS(s){const m=MP,r=s.data();if(!m)return;if(!r||r.go==2)return ML(1);m.r=r;m.k=r.seats.indexOf(m.id);
+function CS(s){const m=MP,r=s.data();if(!m)return;if(!r||r.go==2)return ML(1);r.seats=AR(r.seats);r.names=AR(r.names);r.wn=AR(r.wn);m.r=r;m.k=r.seats.indexOf(m.id);
  if(r.go==1&&r.st&&m.k>=0){const k=m.k,o=JSON.parse(r.st);S=RT(o.S,k);M=RM(o.M,k);HU=0;NM=[0,1,2,3].map(i=>i?r.names[(i+k)%4]||'':'');S.wn=(r.wn&&r.wn[k])||'';if(!m.go){m.go=1;MW(0)}R()}else MR()}
-function CI(a,o){const m=MP;if(!m||!m.pd||m.k<0)return;m.n++;const d=Object.assign({n:m.n,a,k:'',i:-1,b:''},o);m.q=(m.q||Promise.resolve()).then(()=>m.pd.update(d)).catch(()=>{})}
+function CI(a,o){const m=MP;if(!m||!m.pd||m.k<0)return;m.n++;const d=Object.assign({n:m.n,a,k:'',i:-1,b:''},o);m.q=(m.q||Promise.resolve()).then(()=>m.pd.update(d)).catch(e=>TZ('Юбориб бўлмади: '+e.message))}
 function ML(c){const m=MP;if(m){m.u1&&m.u1();if(!c){if(m.host)m.d.update({go:2}).catch(()=>{});else if(m.pd){m.n++;m.pd.update({n:m.n,a:'L'}).catch(()=>{})}}}
  const was=CL;MP=null;CL=0;HS=[1,0,0,0];NM=E4();WN=E4();document.body.classList.remove('cl');if(was){M={pg:[6,6]};newGame(-1)}R();go(600);MR();if(c)MS('Хона ёпилди')}
 
